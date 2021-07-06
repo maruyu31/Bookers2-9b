@@ -9,6 +9,57 @@
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
+      <div>
+        <h2>投稿数の前日比・前週比</h2>
+        <div class="day-compare-table">
+          <table border="solid" width="80%" cellpadding="10">
+            <tr>
+              <th>今日の投稿数</th>
+              <th>前日の投稿数</th>
+              <th>前日比</th>
+            </tr>
+            <tr>
+              <td><%= @today_books %></td>
+              <td><%= @yesterday_books %></td>
+              <td>
+                <% if @today_books == 0 && @yesterday_books == 0 %>
+                  0%
+                <% elsif @today_books == 0 && @yesterday_books != 0 %>
+                  <%= @yesterday_books * 100 %>%
+                <% elsif @today_books != 0 && @yesterday_books == 0 %>
+                  <%= @today_books * 100 %>%
+                <% else %>
+                  <%= ((@today_books) / (@yesterday_books)).to_f * 100 %>%
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="week-compare-table">
+          <table border="solid" width="80%" cellpadding="10">
+            <tr>
+              <th>今週の投稿数</th>
+              <th>前週の投稿数</th>
+              <th>前週比</th>
+            </tr>
+            <tr>
+              <td><%= @weekly_books %></td>
+              <td><%= @last_week_books %></td>
+              <td>
+                <% if @weekly_books == 0 && @last_week_books == 0 %>
+                  0%
+                <% elsif @weekly_books == 0 && @last_week_books != 0 %>
+                  <%= @last_week_books * 100 %>%
+                <% elsif @weekly_books != 0 && @last_week_books == 0 %>
+                  <%= @weekly_books * 100 %>%
+                <% else %>
+                  <%= ((@weekly_books) / (@last_week_books)).to_f * 100 %>%
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
