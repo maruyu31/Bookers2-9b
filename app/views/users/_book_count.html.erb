@@ -1,0 +1,9 @@
+<h3>検索結果</h3>
+<table>
+  <tr>
+    <th>投稿数</th>
+  </tr>
+  <tr>
+    <td><%= user.books.where(created_at: Date.today.all_day).count %></td>
+  </tr>
+</table>
