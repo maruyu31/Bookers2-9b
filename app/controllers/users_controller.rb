@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @new_book = Book.new
+    @book_count = params[:created_at]
     # @today_books = @user.books.where(created_at: Date.today.all_day).count
     # @yesterday_books = @user.books.where(created_at: 1.day.ago.all_day).count
     # @weekly_books = @user.books.where(created_at: 1.week.ago.all_week(start_day = Date.beginning_of_week)).count
