@@ -10,7 +10,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @new_book = Book.new
-    @book_count = params[:created_at]
+    if params[:created_at] == ""
+      @book_count = "日付を入力してください"
+    else
+      created_at = params[:created_at]
+      @book_count = @books.where(["created_at LIKE?", "#{created_at}%"]).count
+    end
     # @today_books = @user.books.where(created_at: Date.today.all_day).count
     # @yesterday_books = @user.books.where(created_at: 1.day.ago.all_day).count
     # @weekly_books = @user.books.where(created_at: 1.week.ago.all_week(start_day = Date.beginning_of_week)).count
