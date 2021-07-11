@@ -22,6 +22,18 @@ class UsersController < ApplicationController
     # @last_week_books = @user.books.where(created_at: 2.week.ago.all_week(start_day = Date.beginning_of_week)).count
   end
 
+  # def search
+  #   @user = User.find(params[:user_id])
+  #   @books = @user.books
+  #   @book = Book.new
+  #   if params[:created_at] == ""
+  #     @search_book = "日付を選択してください"
+  #   else
+  #     create_at = params[:created_at]
+  #     @search_book = @books.where(['created_at LIKE ? ', "#{create_at}%"]).count
+  #   end
+  # end
+
   def edit
     @user = User.find(params[:id])
   end
